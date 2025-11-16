@@ -7,14 +7,21 @@
     "start": "node server.js",
     "dev": "nodemon server.js",
     "build": "cd front && npm install && npm run build && rm -rf ../public && cp -r dist ../public",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "migrate-make": "knex migrate:make",
+    "seed-make": "knex seed:make --knexfile src/db/knexfile.js",
+    "migrate-latest": "npx knex migrate:latest --knexfile src/db/knexfile.js",
+    "migrate-down": "npx knex migrate:down --knexfile src/db/knexfile.js",
+    "seed-data": "npx knex seed:run --knexfile src/db/knexfile.js",
+    "db:reset": "knex migrate:rollback --all && knex migrate:latest && knex seed:run"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "knex": "^3.1.0",
+    "pg": "^8.16.3"
   },
   "devDependencies": {
     "nodemon": "^3.1.11"
