@@ -8,6 +8,7 @@ exports.up = function (knex) {
     table.string('name', 64).notNullable();
     table.integer('level').notNullable().defaultTo(1);
     table.integer('exp').notNullable().defaultTo(0);
+    table.text('image_url').notNullable();
   });
 };
 

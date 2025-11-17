@@ -8,8 +8,19 @@ function user() {
 }
 
 function shared_character() {
-  return {
-    name: faker.animal.type(),
-  };
+  return [
+    {
+      name: 'ばぶ',
+      image_url: 'https://i.ibb.co/rG0cFbYK/babu.png',
+    },
+    {
+      name: 'わた',
+      image_url: 'https://i.ibb.co/GQghyB8Q/wata.png',
+    },
+    {
+      name: 'きのこ',
+      image_url: 'https://i.ibb.co/G49M81V0/kinoko.png',
+    },
+  ];
 }
 module.exports = { user, shared_character };

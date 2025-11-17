@@ -3,23 +3,37 @@ import { getCharacters } from '../api/character';
 
 function Character() {
   const [characters, setCharacters] = useState([]);
+  const [selectedCharacter, setSelectedCharacter] = useState({});
 
   useEffect(() => {
-    getCharacters().then((data) => setCharacters(data));
+    getCharacters().then((data) => {
+      setCharacters(data);
+      setSelectedCharacter(data[0]);
+    });
   }, []);
 
   return (
     <>
       <div>
-        <img src="https://i.ibb.co/kVGzZyyh/penguin.png" alt="chara" />
+        <img src={selectedCharacter.image_url} alt="chara" />
       </div>
-      <h1>Penguin Lv: 1 Exp: 0</h1>
+      <h1>
+        {selectedCharacter.name} Lv: {selectedCharacter.level} Exp:{' '}
+        {selectedCharacter.exp}
+      </h1>
       <div>
-        <ul>
-          {characters.map((character, index) => {
-            return <li key={index}>{character.name}</li>;
-          })}
-        </ul>
+        {characters.map((character, index) => {
+          return (
+            <button
+              key={index}
+              onClick={() => {
+                setSelectedCharacter(characters[index]);
+              }}
+            >
+              {character.name}
+            </button>
+          );
+        })}
       </div>
     </>
   );
