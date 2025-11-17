@@ -3,11 +3,11 @@
  * @returns { Promise<void> }
  */
 exports.up = function (knex) {
-  return knex.schema.createTable('users', function (table) {
+  return knex.schema.createTable('shared_characters', function (table) {
     table.increments('id').primary;
     table.string('name', 64).notNullable();
-    table.string('email', 64).notNullable().unique();
-    table.string('password').notNullable();
+    table.integer('level').notNullable().defaultTo(1);
+    table.integer('exp').notNullable().defaultTo(0);
   });
 };
 
@@ -16,5 +16,5 @@ exports.up = function (knex) {
  * @returns { Promise<void> }
  */
 exports.down = function (knex) {
-  return knex.schema.dropTable('users');
+  return knex.schema.dropTable('shared_characters');
 };
