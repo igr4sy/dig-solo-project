@@ -3,7 +3,7 @@
  * @returns { Promise<void> }
  */
 exports.up = function (knex) {
-  return knex.schema.createTable('shared_characters', function (table) {
+  return knex.schema.createTable('characters', function (table) {
     table.increments('id').primary;
     table.string('name', 64).notNullable();
     table.integer('level').notNullable().defaultTo(1);
@@ -16,5 +16,5 @@ exports.up = function (knex) {
  * @returns { Promise<void> }
  */
 exports.down = function (knex) {
-  return knex.schema.dropTable('shared_characters');
+  return knex.schema.dropTable('characters');
 };
