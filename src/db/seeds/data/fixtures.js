@@ -85,7 +85,7 @@ function user_items() {
   ];
 }
 
-function breeds() {
+function donations() {
   return [
     {
       user_id: 1,
@@ -94,4 +94,4 @@ function breeds() {
     },
   ];
 }
-module.exports = { user, shared_character, items, user_items, breeds };
+module.exports = { user, shared_character, items, user_items, donations };
