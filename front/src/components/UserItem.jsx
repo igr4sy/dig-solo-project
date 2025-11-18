@@ -5,9 +5,14 @@ import { submitDonation } from '../api/donation';
 function UserItem() {
   const [itemList, setItemList] = useState([]);
   const [selectedItem, setSelectedItem] = useState({});
+  const [quantity, setQuantity] = useState(0);
+
+  const loginId = 1;
+  const characterId = 1;
+  // const quantity = 1;
 
   useEffect(() => {
-    getItemList(1).then((data) => {
+    getItemList(loginId).then((data) => {
       setItemList(data);
     });
   }, []);
@@ -21,10 +26,10 @@ function UserItem() {
             <ul>
               {itemList.map((item, index) => {
                 return (
-                  <li className="item" key={index}>
+                  <li className="" key={index}>
                     {item.name} Exp: {item.exp} 個数: {item.quantity}
                     <button
-                      className="item"
+                      className="item-button"
                       onClick={() => {
                         setSelectedItem(itemList[index]);
                       }}
@@ -33,15 +38,47 @@ function UserItem() {
                     </button>
                     {selectedItem.id === itemList[index].id && (
                       <>
-                        個数選択
+                        <>
+                          個数選択:
+                          {quantity} 個
+                          <button
+                            onClick={() =>
+                              setQuantity((quantity) => {
+                                return quantity < selectedItem.quantity
+                                  ? quantity + 1
+                                  : quantity;
+                              })
+                            }
+                          >
+                            +
+                          </button>
+                          <button
+                            onClick={() =>
+                              setQuantity((quantity) => {
+                                return quantity > 0 ? quantity - 1 : quantity;
+                              })
+                            }
+                          >
+                            -
+                          </button>
+                        </>
                         <button
+                          className="item-button"
                           onClick={() => {
-                            submitDonation();
+                            submitDonation(
+                              loginId,
+                              characterId,
+                              selectedItem,
+                              quantity
+                            );
+                            setSelectedItem({});
+                            setQuantity(0);
                           }}
                         >
                           OK
                         </button>
                         <button
+                          className="item-button"
                           onClick={() => {
                             setSelectedItem({});
                           }}

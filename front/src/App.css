@@ -58,5 +58,19 @@
 
 .item-list {
   display: flex;
-  justify-content: center;
+  justify-content: left;
+  text-align: left;
+}
+
+.item {
+}
+
+.item-button {
+  margin: 8px;
+  border: darkgray solid;
+}
+
+.user-info {
+  justify-content: left;
+  text-align: left;
 }

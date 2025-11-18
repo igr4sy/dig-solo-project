@@ -17,6 +17,7 @@ function buildApp() {
   const donationsController = initDonations(knex);
 
   app.get('/api/characters', charactersController.list);
+  app.patch('/api/characters/:id', charactersController.update);
 
   app.get('/api/users/:id', usersController.find);
 

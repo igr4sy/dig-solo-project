@@ -3,7 +3,10 @@ function createCharactersService(repository) {
     return await repository.list();
   };
 
-  return { list };
+  const update = async (id, payload) => {
+    return await repository.update(id, payload);
+  };
+  return { list, update };
 }
 
 module.exports = { createCharactersService };

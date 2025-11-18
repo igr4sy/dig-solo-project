@@ -1,8 +1,10 @@
-async function submitDonation() {
+import { updateExp } from './character';
+
+async function submitDonation(userId, characterId, selectedItem, quantity) {
   const req = {
-    user_id: 1,
-    character_id: 1,
-    exp: 20,
+    user_id: userId,
+    character_id: characterId,
+    exp: selectedItem.exp * quantity,
   };
 
   const res = await fetch(`/api/donations`, {
@@ -13,6 +15,11 @@ async function submitDonation() {
     body: JSON.stringify(req),
   });
   const result = await res.json();
+
+  if (res.ok) {
+    await updateExp(characterId, { exp: req.exp });
+  }
+
   return result.data;
 }
 
