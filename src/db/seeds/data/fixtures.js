@@ -1,10 +1,28 @@
 const { faker } = require('@faker-js/faker');
 function user() {
-  return {
-    name: faker.internet.username(),
-    email: faker.internet.email(),
-    password: faker.internet.password(),
-  };
+  // return {
+  //   name: faker.internet.username(),
+  //   email: faker.internet.email(),
+  //   password: faker.internet.password(),
+  // };
+
+  return [
+    {
+      name: 'たかし',
+      email: 'takashi@example.com',
+      password: 'password123',
+    },
+    {
+      name: 'けんと',
+      email: 'kento@example.com',
+      password: 'password123',
+    },
+    {
+      name: 'しゃか',
+      email: 'shaka@example.com',
+      password: 'password123',
+    },
+  ];
 }
 
 function shared_character() {
@@ -47,22 +65,22 @@ function user_items() {
     {
       user_id: 1,
       item_id: 1,
-      stock: 5,
+      quantity: 5,
     },
     {
       user_id: 1,
       item_id: 2,
-      stock: 2,
+      quantity: 2,
     },
     {
       user_id: 2,
       item_id: 2,
-      stock: 3,
+      quantity: 3,
     },
     {
       user_id: 3,
       item_id: 3,
-      stock: 2,
+      quantity: 2,
     },
   ];
 }

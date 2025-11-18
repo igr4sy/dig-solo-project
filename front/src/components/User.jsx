@@ -1,7 +1,10 @@
+import UserItem from './UserItem';
+
 function User({ user }) {
   return (
     <div className="card">
-      <h2>{user.name}</h2>
+      <h2>{user.name} さん</h2>
+      <UserItem />
     </div>
   );
 }

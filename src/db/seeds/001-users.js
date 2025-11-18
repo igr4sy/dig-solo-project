@@ -1,5 +1,6 @@
 const fixture = require('./data/fixtures');
-const usersData = Array.from({ length: 3 }, () => fixture.user());
+// const usersData = Array.from({ length: 3 }, () => fixture.user());
+const usersData = fixture.user();
 /**
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }

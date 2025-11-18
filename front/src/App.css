@@ -53,4 +53,10 @@
 
 .chara-info {
   padding: 2em;
+  width: 600px;
+}
+
+.item-list {
+  display: flex;
+  justify-content: center;
 }
