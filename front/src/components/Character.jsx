@@ -13,18 +13,26 @@ function Character() {
   }, []);
 
   return (
-    <>
+    <div className="card">
       <div>
-        <img src={selectedCharacter.image_url} alt="chara" />
+        <img
+          className="chara-image"
+          src={selectedCharacter.image_url}
+          alt="chara"
+        />
       </div>
-      <h1>
-        {selectedCharacter.name} Lv: {selectedCharacter.level} Exp:{' '}
-        {selectedCharacter.exp}
-      </h1>
+      <div className="chara-info">
+        <h1>
+          {selectedCharacter.name} Lv: {selectedCharacter.level} Exp:{' '}
+          {selectedCharacter.exp}
+        </h1>
+      </div>
+      <p>キャラクターセレクト</p>
       <div>
         {characters.map((character, index) => {
           return (
             <button
+              className="chara-button"
               key={index}
               onClick={() => {
                 setSelectedCharacter(characters[index]);
@@ -35,7 +43,7 @@ function Character() {
           );
         })}
       </div>
-    </>
+    </div>
   );
 }
 

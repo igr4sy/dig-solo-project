@@ -1,31 +1,29 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import Character from './components/Character';
+import User from './components/User';
+import { getLoginUser } from './api/user';
 
 function App() {
   const [count, setCount] = useState(0);
-  const [message, setMessage] = useState();
+
+  const [user, setUser] = useState({});
 
   useEffect(() => {
-    fetch('/api')
-      .then((res) => res.text())
-      .then((data) => {
-        setMessage(data);
-      });
+    getLoginUser(1).then((data) => {
+      setUser(data);
+    });
   }, []);
 
   return (
     <>
       <Character />
+      <User user={user} />
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-      <p>Message from the backend: {message}</p>
     </>
   );
 }

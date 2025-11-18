@@ -40,3 +40,17 @@
 .read-the-docs {
   color: #888;
 }
+
+.chara-image {
+  height: 400px;
+}
+
+.chara-button {
+  margin: 8px;
+  width: 100px;
+  border: darkgray solid;
+}
+
+.chara-info {
+  padding: 2em;
+}
