@@ -9,7 +9,6 @@ function UserItem() {
 
   const loginId = 1;
   const characterId = 1;
-  // const quantity = 1;
 
   useEffect(() => {
     getItemList(loginId).then((data) => {
@@ -27,7 +26,7 @@ function UserItem() {
               {itemList.map((item, index) => {
                 return (
                   <li className="" key={index}>
-                    {item.name} Exp: {item.exp} 個数: {item.quantity}
+                    {item.name} Exp： {item.exp} 個数： {item.quantity}
                     <button
                       className="item-button"
                       onClick={() => {
@@ -39,7 +38,7 @@ function UserItem() {
                     {selectedItem.id === itemList[index].id && (
                       <>
                         <>
-                          個数選択:
+                          個数選択：
                           {quantity} 個
                           <button
                             onClick={() =>

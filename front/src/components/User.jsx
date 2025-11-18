@@ -3,8 +3,7 @@ import UserItem from './UserItem';
 function User({ user }) {
   return (
     <div className="user-info">
-      <h2>{user.name} さん</h2>
-      <UserItem />
+      <h2>ユーザー名：{user.name}</h2>
     </div>
   );
 }

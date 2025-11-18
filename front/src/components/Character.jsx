@@ -1,49 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { getCharacters } from '../api/character';
-
-function Character() {
-  const [characters, setCharacters] = useState([]);
-  const [selectedCharacter, setSelectedCharacter] = useState({});
-
-  useEffect(() => {
-    getCharacters().then((data) => {
-      setCharacters(data);
-      setSelectedCharacter(data[0]);
-    });
-  }, []);
-
+function Character({ selectedCharacter }) {
   return (
-    <div className="card">
+    <>
+      <img
+        className="chara-image"
+        src={selectedCharacter.image_url}
+        alt="chara"
+      />
       <div>
-        <img
-          className="chara-image"
-          src={selectedCharacter.image_url}
-          alt="chara"
-        />
-      </div>
-      <div className="chara-info">
         <h1>{selectedCharacter.name}</h1>
         <h2>
           Lv: {selectedCharacter.level} / Exp: {selectedCharacter.exp}
         </h2>
       </div>
-      <p>キャラクターセレクト</p>
-      <div>
-        {characters.map((character, index) => {
-          return (
-            <button
-              className="chara-button"
-              key={index}
-              onClick={() => {
-                setSelectedCharacter(characters[index]);
-              }}
-            >
-              {character.name}
-            </button>
-          );
-        })}
-      </div>
-    </div>
+    </>
   );
 }
 
