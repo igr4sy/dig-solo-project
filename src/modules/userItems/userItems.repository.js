@@ -1,5 +1,3 @@
-const { join } = require('../db/knex');
-
 function createUserItemsRepository(knex, table = 'user_items') {
   const userItemsList = async (id) => {
     const userItemsListArray = await knex

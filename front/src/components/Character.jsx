@@ -22,10 +22,10 @@ function Character() {
         />
       </div>
       <div className="chara-info">
-        <h1>
-          {selectedCharacter.name} Lv: {selectedCharacter.level} Exp:{' '}
-          {selectedCharacter.exp}
-        </h1>
+        <h1>{selectedCharacter.name}</h1>
+        <h2>
+          Lv: {selectedCharacter.level} / Exp: {selectedCharacter.exp}
+        </h2>
       </div>
       <p>キャラクターセレクト</p>
       <div>

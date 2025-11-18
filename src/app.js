@@ -1,9 +1,9 @@
 const path = require('path');
 const express = require('express');
 const knex = require('./db/knex');
-const { initCharacters } = require('./characters/index');
-const { initUsers } = require('./users/index');
-const { initUserItems } = require('./userItems');
+const { initCharacters } = require('./modules/characters/index');
+const { initUsers } = require('./modules/users/index');
+const { initUserItems } = require('./modules/userItems/index');
 
 function buildApp() {
   const app = express();
