@@ -2,19 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { getItemList } from '../api/userItem';
 import { submitDonation } from '../api/donation';
 
-function UserItem() {
-  const [itemList, setItemList] = useState([]);
+function UserItem({ itemList, handleDonate }) {
+  // const [itemList, setItemList] = useState([]);
   const [selectedItem, setSelectedItem] = useState({});
   const [quantity, setQuantity] = useState(0);
-
-  const loginId = 1;
-  const characterId = 1;
-
-  useEffect(() => {
-    getItemList(loginId).then((data) => {
-      setItemList(data);
-    });
-  }, []);
 
   return (
     <div>
@@ -64,12 +55,7 @@ function UserItem() {
                         <button
                           className="item-button"
                           onClick={() => {
-                            submitDonation(
-                              loginId,
-                              characterId,
-                              selectedItem,
-                              quantity
-                            );
+                            handleDonate(selectedItem, quantity);
                             setSelectedItem({});
                             setQuantity(0);
                           }}

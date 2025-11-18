@@ -1,5 +1,3 @@
-import { updateExp } from './character';
-
 async function submitDonation(userId, characterId, selectedItem, quantity) {
   const req = {
     user_id: userId,
@@ -15,10 +13,6 @@ async function submitDonation(userId, characterId, selectedItem, quantity) {
     body: JSON.stringify(req),
   });
   const result = await res.json();
-
-  if (res.ok) {
-    await updateExp(characterId, { exp: req.exp });
-  }
 
   return result.data;
 }
