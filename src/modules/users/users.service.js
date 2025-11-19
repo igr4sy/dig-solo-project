@@ -1,6 +1,6 @@
 function createUsersService(repository) {
-  const find = async (id) => {
-    return await repository.findById(id);
+  const find = async (idOrEmail) => {
+    return await repository.findByIdOrEmail(idOrEmail);
   };
 
   return { find };

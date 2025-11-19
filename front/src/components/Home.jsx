@@ -10,6 +10,7 @@ import { getCharacters, updateExp } from '../api/character';
 import { getItemList, updateItemQuantity } from '../api/userItem';
 import { submitDonation } from '../api/donation';
 import { useEffect, useState } from 'react';
+import { useAuthContext } from '../context/AuthContext';
 
 const Home = () => {
   const [user, setUser] = useState({});
@@ -19,8 +20,10 @@ const Home = () => {
 
   const loginId = 1;
 
+  const { authUser } = useAuthContext();
+
   useEffect(() => {
-    getLoginUser(loginId).then((data) => {
+    getLoginUser(authUser.email).then((data) => {
       setUser(data);
     });
 

@@ -1,14 +1,13 @@
 function createUsersRepository(knex, table = 'users') {
-  const findById = async (id) => {
-    const user = await knex
-      .select()
-      .from(table)
-      .where('id', Number(id))
-      .first();
+  const findByIdOrEmail = async (idOrEmail) => {
+    const query = isNaN(idOrEmail) ? 'email' : 'id';
+    const params = Number(idOrEmail) || idOrEmail;
+
+    const user = await knex.select().from(table).where(query, params).first();
     return user;
   };
 
-  return { findById };
+  return { findByIdOrEmail };
 }
 
 module.exports = { createUsersRepository };
