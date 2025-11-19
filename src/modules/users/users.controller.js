@@ -4,7 +4,12 @@ function createUsersController(service) {
     res.status(200).json({ data: result });
   };
 
-  return { find };
+  const create = async (req, res) => {
+    const result = await service.create(req.body);
+    res.status(201).json({ data: result });
+  };
+
+  return { find, create };
 }
 
 module.exports = { createUsersController };

@@ -1,7 +1,11 @@
 import React from 'react';
 
 function Donation() {
-  return <div>育成情報</div>;
+  return (
+    <div>
+      <button>育成情報</button>
+    </div>
+  );
 }
 
 export default Donation;

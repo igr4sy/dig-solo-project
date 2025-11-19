@@ -5,9 +5,6 @@ async function getItemList(id) {
 }
 
 async function updateItemQuantity(selectItem, quantity) {
-  console.log('item quantity', selectItem.quantity);
-  console.log('quantity', quantity);
-
   if (selectItem.quantity > quantity) {
     const res = await fetch(`/api/users/items/${selectItem.id}`, {
       method: 'PATCH',

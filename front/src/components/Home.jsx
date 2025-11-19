@@ -18,22 +18,21 @@ const Home = () => {
   const [selectedCharacter, setSelectedCharacter] = useState({});
   const [itemList, setItemList] = useState([]);
 
-  const loginId = 1;
+  // const loginId = 1;
 
   const { authUser } = useAuthContext();
 
   useEffect(() => {
     getLoginUser(authUser.email).then((data) => {
       setUser(data);
+      getItemList(data.id).then((data) => {
+        setItemList(data);
+      });
     });
 
     getCharacters().then((data) => {
       setCharacters(data);
       setSelectedCharacter(data[0]);
-    });
-
-    getItemList(loginId).then((data) => {
-      setItemList(data);
     });
   }, []);
 
@@ -42,14 +41,14 @@ const Home = () => {
   };
 
   const fetchItemList = () => {
-    getItemList(loginId).then((data) => {
+    getItemList(user.id).then((data) => {
       setItemList(data);
     });
   };
 
   const handleDonate = async (selectedItem, quantity) => {
     const res = await submitDonation(
-      loginId,
+      user.id,
       selectedCharacter.id,
       selectedItem,
       quantity

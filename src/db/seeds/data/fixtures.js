@@ -3,17 +3,14 @@ function user() {
     {
       name: 'たかし',
       email: 'takashi@example.com',
-      password: 'password123',
     },
     {
       name: 'けんと',
       email: 'kento@example.com',
-      password: 'password123',
     },
     {
       name: 'しゃか',
       email: 'shaka@example.com',
-      password: 'password123',
     },
   ];
 }

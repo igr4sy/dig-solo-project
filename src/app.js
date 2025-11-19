@@ -20,6 +20,7 @@ function buildApp() {
   app.patch('/api/characters/:id', charactersController.update);
 
   app.get('/api/users/:idOrEmail', usersController.find);
+  app.post('/api/users', usersController.create);
 
   app.get('/api/users/:id/items', userItemsController.list);
   app.patch('/api/users/items/:id', userItemsController.update);

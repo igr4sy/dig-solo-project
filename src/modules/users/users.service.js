@@ -3,7 +3,11 @@ function createUsersService(repository) {
     return await repository.findByIdOrEmail(idOrEmail);
   };
 
-  return { find };
+  const create = async (payload) => {
+    return await repository.create(payload);
+  };
+
+  return { find, create };
 }
 
 module.exports = { createUsersService };

@@ -2,16 +2,19 @@ import { useState } from 'react';
 import auth from '../firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { Link } from 'react-router-dom';
+import { createUser } from '../api/user';
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [name, setUserName] = useState('');
   const [error, setError] = useState('');
 
   const handleSubmit = async (event) => {
     try {
       event.preventDefault();
       await createUserWithEmailAndPassword(auth, email, password);
+      await createUser(name, email);
     } catch (error) {
       console.log(error);
       setError(error.message);
@@ -23,7 +26,9 @@ const SignUp = () => {
   const handleChangePassword = (event) => {
     setPassword(event.currentTarget.value);
   };
-
+  const handleChangeUserName = (event) => {
+    setUserName(event.currentTarget.value);
+  };
   return (
     <div>
       <h1>ユーザ登録</h1>
@@ -36,6 +41,15 @@ const SignUp = () => {
             type="email"
             placeholder="email"
             onChange={(event) => handleChangeEmail(event)}
+          />
+        </div>
+        <div>
+          <label>ユーザー名</label>
+          <input
+            name="userName"
+            type="userName"
+            placeholder="user name"
+            onChange={(event) => handleChangeUserName(event)}
           />
         </div>
         <div>

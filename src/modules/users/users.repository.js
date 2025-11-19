@@ -7,7 +7,12 @@ function createUsersRepository(knex, table = 'users') {
     return user;
   };
 
-  return { findByIdOrEmail };
+  const create = async (payload) => {
+    const newDonation = await knex(table).insert(payload).returning('*');
+    return newDonation[0];
+  };
+
+  return { findByIdOrEmail, create };
 }
 
 module.exports = { createUsersRepository };
