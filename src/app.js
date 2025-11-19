@@ -21,7 +21,8 @@ function buildApp() {
 
   app.get('/api/users/:id', usersController.find);
 
-  app.get('/api/users/:id/items', userItemsController.userItemsList);
+  app.get('/api/users/:id/items', userItemsController.list);
+  app.patch('/api/users/items/:id', userItemsController.update);
 
   app.post('/api/donations', donationsController.create);
 

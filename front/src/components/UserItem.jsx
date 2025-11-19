@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { getItemList } from '../api/userItem';
-import { submitDonation } from '../api/donation';
+import { useState } from 'react';
 
 function UserItem({ itemList, handleDonate }) {
   // const [itemList, setItemList] = useState([]);
@@ -17,10 +15,11 @@ function UserItem({ itemList, handleDonate }) {
               {itemList.map((item, index) => {
                 return (
                   <li className="" key={index}>
-                    {item.name} Exp： {item.exp} 個数： {item.quantity}
+                    {item.name} Exp： {item.exp} / 個数： {item.quantity}
                     <button
                       className="item-button"
                       onClick={() => {
+                        setQuantity(0);
                         setSelectedItem(itemList[index]);
                       }}
                     >
@@ -28,7 +27,7 @@ function UserItem({ itemList, handleDonate }) {
                     </button>
                     {selectedItem.id === itemList[index].id && (
                       <>
-                        <>
+                        <div>
                           個数選択：
                           {quantity} 個
                           <button
@@ -51,7 +50,7 @@ function UserItem({ itemList, handleDonate }) {
                           >
                             -
                           </button>
-                        </>
+                        </div>
                         <button
                           className="item-button"
                           onClick={() => {

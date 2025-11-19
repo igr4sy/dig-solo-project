@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import Character from './components/Character';
-import User from './components/User';
 import { getLoginUser } from './api/user';
 import Donation from './components/Donation';
 import UserItem from './components/UserItem';
 import CharacterSelect from './components/CharacterSelect';
 import { getCharacters, updateExp } from './api/character';
-import { getItemList } from './api/userItem';
+import { getItemList, updateItemQuantity } from './api/userItem';
 import { submitDonation } from './api/donation';
 
 function App() {
@@ -15,10 +14,9 @@ function App() {
   const [user, setUser] = useState({});
   const [characters, setCharacters] = useState([]);
   const [selectedCharacter, setSelectedCharacter] = useState({});
-
   const [itemList, setItemList] = useState([]);
-  const [selectedItem, setSelectedItem] = useState({});
-  const [quantity, setQuantity] = useState(0);
+  // const [selectedItem, setSelectedItem] = useState({});
+  // const [quantity, setQuantity] = useState(0);
 
   const loginId = 1;
 
@@ -41,6 +39,12 @@ function App() {
     getCharacters().then((data) => setCharacters(data));
   };
 
+  const fetchItemList = () => {
+    getItemList(loginId).then((data) => {
+      setItemList(data);
+    });
+  };
+
   const handleDonate = async (selectedItem, quantity) => {
     const res = await submitDonation(
       loginId,
@@ -53,10 +57,12 @@ function App() {
       const update = await updateExp(selectedCharacter.id, {
         exp: selectedItem.exp * quantity,
       });
-      setSelectedCharacter(update);
-    }
 
-    fetchCharacter();
+      setSelectedCharacter(update);
+      fetchCharacter();
+      await updateItemQuantity(selectedItem, quantity);
+      fetchItemList();
+    }
   };
 
   return (
@@ -68,7 +74,6 @@ function App() {
       />
       <h2>ユーザー名：{user.name}</h2>
       <UserItem itemList={itemList} handleDonate={handleDonate} />
-
       <Donation />
       <div>
         <div className="card">
