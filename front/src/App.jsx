@@ -8,6 +8,13 @@ import CharacterSelect from './components/CharacterSelect';
 import { getCharacters, updateExp } from './api/character';
 import { getItemList, updateItemQuantity } from './api/userItem';
 import { submitDonation } from './api/donation';
+import SignUp from './components/SignUp';
+import { AuthProvider } from './context/AuthContext';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Home from './components/Home';
+import Login from './components/Login';
+import ProtectedRoute from './components/ProtectedRoute';
+import PublicRoute from './components/PublicRoute';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -67,6 +74,36 @@ function App() {
 
   return (
     <>
+      <AuthProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <ProtectedRoute>
+                  <Home />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/signup"
+              element={
+                <PublicRoute>
+                  <SignUp />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <PublicRoute>
+                  <Login />
+                </PublicRoute>
+              }
+            />
+          </Routes>
+        </BrowserRouter>
+      </AuthProvider>
       <Character selectedCharacter={selectedCharacter} />
       <CharacterSelect
         characters={characters}
