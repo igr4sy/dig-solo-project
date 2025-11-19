@@ -1,11 +1,4 @@
-const { faker } = require('@faker-js/faker');
 function user() {
-  // return {
-  //   name: faker.internet.username(),
-  //   email: faker.internet.email(),
-  //   password: faker.internet.password(),
-  // };
-
   return [
     {
       name: 'たかし',
