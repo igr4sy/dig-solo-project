@@ -1,13 +1,21 @@
 import { useState } from 'react';
 import auth from '../firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { Link } from 'react-router-dom';
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    createUserWithEmailAndPassword(auth, email, password);
+  const [error, setError] = useState('');
+
+  const handleSubmit = async (event) => {
+    try {
+      event.preventDefault();
+      await createUserWithEmailAndPassword(auth, email, password);
+    } catch (error) {
+      console.log(error);
+      setError(error.message);
+    }
   };
   const handleChangeEmail = (event) => {
     setEmail(event.currentTarget.value);
@@ -19,6 +27,7 @@ const SignUp = () => {
   return (
     <div>
       <h1>ユーザ登録</h1>
+      {error && <p style={{ color: 'red' }}>{error}</p>}
       <form onSubmit={handleSubmit}>
         <div>
           <label>メールアドレス</label>
@@ -40,6 +49,9 @@ const SignUp = () => {
         </div>
         <div>
           <button>登録</button>
+        </div>
+        <div>
+          <Link to={'/login'}>ログイン画面</Link>にもどる
         </div>
       </form>
     </div>
