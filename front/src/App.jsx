@@ -10,7 +10,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import PublicRoute from './components/PublicRoute';
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [start, setStart] = useState(false);
 
   return (
     <>
@@ -45,13 +45,13 @@ function App() {
         </BrowserRouter>
       </AuthProvider>
 
-      <div>
-        <div className="card">
-          <button onClick={() => setCount((count) => count + 1)}>
-            count is {count}
-          </button>
+      {!start && (
+        <div>
+          <div className="card">
+            <button onClick={() => setStart(true)}>はじめる</button>
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 }
