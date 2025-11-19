@@ -1,4 +1,4 @@
-// Update with your config settings.
+require('dotenv').config();
 
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
@@ -7,8 +7,8 @@ module.exports = {
   development: {
     client: 'pg',
     connection: {
-      user: process.env.DB_USER || 'postgres',
-      database: process.env.DB_NAME || 'sharemon',
+      user: process.env.DB_USER,
+      database: process.env.DB_NAME,
     },
     migrations: {
       directory: './src/db/migrations',
