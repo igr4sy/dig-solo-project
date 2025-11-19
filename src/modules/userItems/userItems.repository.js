@@ -20,7 +20,12 @@ function createUserItemsRepository(knex, table = 'user_items') {
     return updateData[0];
   };
 
-  return { list, update };
+  const remove = async (id) => {
+    const del = await knex(table).where('id', id).del().returning('*');
+    return del[0];
+  };
+
+  return { list, update, remove };
 }
 
 module.exports = { createUserItemsRepository };

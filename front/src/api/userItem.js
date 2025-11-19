@@ -21,6 +21,16 @@ async function updateItemQuantity(selectItem, quantity) {
 
     const result = await res.json();
     return result.data;
+  } else if (selectItem.quantity === quantity) {
+    deleteUserItems(selectItem.id);
   }
 }
-export { getItemList, updateItemQuantity };
+
+async function deleteUserItems(id) {
+  const res = await fetch(`/api/users/items/${id}`, {
+    method: 'DELETE',
+  });
+
+  console.log('status', res.status);
+}
+export { getItemList, updateItemQuantity, deleteUserItems };

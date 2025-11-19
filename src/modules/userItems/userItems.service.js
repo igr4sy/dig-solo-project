@@ -7,7 +7,11 @@ function createUserItemsService(repository) {
     return await repository.update(id, payload);
   };
 
-  return { list, update };
+  const remove = async (id) => {
+    return await repository.remove(id);
+  };
+
+  return { list, update, remove };
 }
 
 module.exports = { createUserItemsService };

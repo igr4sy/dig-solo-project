@@ -9,7 +9,12 @@ function createUserItemsController(service) {
     res.status(200).json({ data: result });
   };
 
-  return { list, update };
+  const remove = async (req, res) => {
+    const result = await service.remove(Number(req.params.id));
+    res.status(204).send();
+  };
+
+  return { list, update, remove };
 }
 
 module.exports = { createUserItemsController };
