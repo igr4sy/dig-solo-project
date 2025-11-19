@@ -22,16 +22,16 @@ function shared_character() {
   return [
     {
       name: 'ばぶ',
-      image_url: 'https://i.imgur.com/U5L9fJU.jpeg',
+      image_url: '/babu.jpg',
       exp: 200,
     },
     {
       name: 'わた',
-      image_url: 'https://i.imgur.com/1gl3TeY.jpeg',
+      image_url: '/wata.jpg',
     },
     {
       name: 'きのこ',
-      image_url: 'https://i.imgur.com/a5B5nTs.jpegg',
+      image_url: '/kinoko.jpg',
     },
   ];
 }
