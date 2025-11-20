@@ -12,7 +12,7 @@
     "migrate-down": "npx knex migrate:down",
     "seed-data": "npx knex seed:run",
     "db:reset": "knex migrate:rollback --all && knex migrate:latest && knex seed:run",
-    "build": "npm install && npm run db:reset && cd front && npm install && npm run build && rm -rf ../public && cp -r dist ../public"
+    "build": "npm install && cd front && npm install && npm run build && rm -rf ../public && cp -r dist ../public"
   },
   "keywords": [],
   "author": "",
