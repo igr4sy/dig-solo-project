@@ -3,6 +3,7 @@ import auth from '../firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { Link } from 'react-router-dom';
 import { createUser } from '../api/user';
+import { initUserItems } from '../api/userItem';
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
@@ -14,7 +15,9 @@ const SignUp = () => {
     try {
       event.preventDefault();
       await createUserWithEmailAndPassword(auth, email, password);
-      await createUser(name, email);
+      const newUser = await createUser(name, email);
+      const initItems = await initUserItems(newUser.id);
+      console.log('init', initItems);
     } catch (error) {
       console.log(error);
       setError(error.message);

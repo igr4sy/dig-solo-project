@@ -4,6 +4,11 @@ function createUserItemsController(service) {
     res.status(200).json({ data: result });
   };
 
+  const create = async (req, res) => {
+    const result = await service.create(req.body);
+    res.status(201).json({ data: result });
+  };
+
   const update = async (req, res) => {
     const result = await service.update(Number(req.params.id), req.body);
     res.status(200).json({ data: result });
@@ -14,7 +19,7 @@ function createUserItemsController(service) {
     res.status(204).send();
   };
 
-  return { list, update, remove };
+  return { list, update, remove, create };
 }
 
 module.exports = { createUserItemsController };

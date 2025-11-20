@@ -10,6 +10,12 @@ function createUserItemsRepository(knex, table = 'user_items') {
     return userItemsListArray;
   };
 
+  const create = async (payload) => {
+    const newDonation = await knex(table).insert(payload).returning('*');
+
+    return newDonation[0];
+  };
+
   const update = async (id, payload) => {
     const target = await knex(table).where('id', id);
     payload.quantity = target[0].quantity - payload.quantity;
@@ -25,7 +31,7 @@ function createUserItemsRepository(knex, table = 'user_items') {
     return del[0];
   };
 
-  return { list, update, remove };
+  return { list, update, remove, create };
 }
 
 module.exports = { createUserItemsRepository };

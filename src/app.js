@@ -23,6 +23,7 @@ function buildApp() {
   app.post('/api/users', usersController.create);
 
   app.get('/api/users/:id/items', userItemsController.list);
+  app.post('/api/users/items', userItemsController.create);
   app.patch('/api/users/items/:id', userItemsController.update);
   app.delete('/api/users/items/:id', userItemsController.remove);
 

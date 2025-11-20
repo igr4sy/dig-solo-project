@@ -30,4 +30,21 @@ async function deleteUserItems(id) {
 
   console.log('status', res.status);
 }
-export { getItemList, updateItemQuantity, deleteUserItems };
+
+async function initUserItems(id) {
+  const res = await fetch(`/api/users/items/`, {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify({
+      user_id: id,
+      item_id: 1,
+      quantity: 10,
+    }),
+  });
+  const result = await res.json();
+
+  return result.data;
+}
+export { getItemList, updateItemQuantity, deleteUserItems, initUserItems };
