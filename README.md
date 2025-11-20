@@ -110,9 +110,12 @@ DB_NAME=[データベース名]
 npm run dev
 ```
 
-## スクリプト
+データベースのマイグレーションとシードを実行
 
-Explain how to run the automated tests for this system
+```
+npm run migrate-latest
+npm run seed-data
+```
 
 ## ディレクトリ構成
 
