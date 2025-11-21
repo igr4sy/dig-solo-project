@@ -1,13 +1,11 @@
-// import { useState } from 'react';
 import './App.css';
-
 import SignUp from './components/SignUp';
-import { AuthProvider } from './context/AuthContext';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './components/Home';
 import Login from './components/Login';
 import ProtectedRoute from './components/ProtectedRoute';
 import PublicRoute from './components/PublicRoute';
+import { AuthProvider } from './components/AuthProvider';
 
 function App() {
   return (
