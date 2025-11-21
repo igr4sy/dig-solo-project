@@ -4,16 +4,13 @@ import { useEffect } from 'react';
 
 const PublicRoute = ({ children }) => {
   const { authUser } = useAuthContext();
-  // console.log(authUser);
-
   const navigation = useNavigate();
 
   useEffect(() => {
     if (authUser) {
       return navigation('/');
     }
-  });
-
+  }, [authUser, navigation]);
   return children;
 };
 

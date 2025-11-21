@@ -5,11 +5,12 @@ import { useEffect } from 'react';
 const ProtectedRoute = ({ children }) => {
   const { authUser } = useAuthContext();
   const navigation = useNavigate();
+
   useEffect(() => {
     if (!authUser) {
       return navigation('/login');
     }
-  });
+  }, [authUser, navigation]);
   return children;
 };
 
