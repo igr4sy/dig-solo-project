@@ -9,7 +9,6 @@ const { initDonations } = require('./modules/donations');
 function buildApp() {
   const app = express();
   app.use(express.json());
-  app.use(express.static(path.join(__dirname, '..', '/public')));
 
   const charactersController = initCharacters(knex);
   const usersController = initUsers(knex);
@@ -29,9 +28,11 @@ function buildApp() {
 
   app.post('/api/donations', donationsController.create);
 
-  app.use('/api', (req, res) => {
-    res.send('hello');
+  app.use('/', express.static(path.join(__dirname, '..', '/public')));
+  app.use((req, res, next) => {
+    res.sendFile(path.join(__dirname, '..', 'build', 'index.html'));
   });
+
   return app;
 }
 module.exports = { buildApp };

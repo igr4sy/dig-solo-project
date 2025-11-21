@@ -23,18 +23,20 @@ const Home = () => {
   const { authUser } = useAuthContext();
 
   useEffect(() => {
-    getLoginUser(authUser.email).then((data) => {
-      setUser(data);
-      getItemList(data.id).then((data) => {
-        setItemList(data);
+    if (authUser) {
+      getLoginUser(authUser.email).then((data) => {
+        setUser(data);
+        getItemList(data.id).then((data) => {
+          setItemList(data);
+        });
       });
-    });
 
-    getCharacters().then((data) => {
-      setCharacters(data);
-      setSelectedCharacter(data[0]);
-    });
-  }, []);
+      getCharacters().then((data) => {
+        setCharacters(data);
+        setSelectedCharacter(data[0]);
+      });
+    }
+  }, [authUser]);
 
   const fetchCharacter = () => {
     getCharacters().then((data) => setCharacters(data));

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import './App.css';
 
 import SignUp from './components/SignUp';
@@ -10,8 +10,6 @@ import ProtectedRoute from './components/ProtectedRoute';
 import PublicRoute from './components/PublicRoute';
 
 function App() {
-  const [start, setStart] = useState(false);
-
   return (
     <>
       <AuthProvider>
@@ -44,14 +42,6 @@ function App() {
           </Routes>
         </BrowserRouter>
       </AuthProvider>
-
-      {!start && (
-        <div>
-          <div className="card">
-            <button onClick={() => setStart(true)}>はじめる</button>
-          </div>
-        </div>
-      )}
     </>
   );
 }
